@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  mongo-db-local:
+    image: mongo:4.4.1
+    container_name: mongodb-local
+    restart: always
+    ports:
+      - 27077:27017
+    volumes:
+      - ${MONGODB_DATA_VOLUME}:/data/db
+    env_file:
+        - mongo.env
+    command: [--auth]
+networks:
+ default:
+    external:
+        name: local-mongodb
